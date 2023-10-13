@@ -11,6 +11,9 @@ public class App {
         int i= 0;//sera la posicion en la que se guardara cada candidato en mi array(miLista)
         Ciudades newCiudad; 
         PartidoPolitico newPartido;
+        int[] lista4 = {0,0,0,0,0,0,0,0,0,0};
+        Promesas promesa;
+        Promesas promesa2;
         while(!salir){
 
             
@@ -63,10 +66,29 @@ public class App {
                     }
                     System.out.print("\n\nDijite el numero que corresponde a su Partido Politico: ");
                     byte numPartido = scanner.nextByte();  //se guarda el num del pPolitico dijitado
+                    lista4[(int)numPartido-1] += 1;
                     newPartido = partidosP[numPartido - 1];//se guarda en (newPartido) el valor de la lista paridosP[posicion -1(ya que las posiciones inician en 0)]
                     
-                    System.out.println("los nombre son "+nombre);
-                    Candidato candidato = new Candidato(nombre, cedula, newCiudad, derecha, newPartido);//Se crea el candidato
+                    //Promesas
+                    System.out.println("\n-PROMESAS-");
+                    Promesas newPromesas[] = Promesas.values();
+                    for (int y = 0; y < newPromesas.length;y++){
+                    System.out.print("  " + (y+1)+ "." + newPromesas[y]);
+                    if((y+1)%2 == 0){System.out.println("\n");
+
+                    }}
+                    System.out.print("\n\nDijite el numero que corresponde a a promesa deseada: ");
+                    byte numPromesa = scanner.nextByte(); 
+                    promesa = newPromesas[numPromesa - (byte)1];
+                    
+                    
+                    System.out.print("\n\nDijite el numero de la segunda promesa deseada: ");
+                    byte numPromesa2 = scanner.nextByte(); 
+                    promesa2 = newPromesas[numPromesa2 - (byte)1];
+
+
+
+                    Candidato candidato = new Candidato(nombre, cedula, newCiudad, derecha, newPartido,promesa,promesa2);//Se crea el candidato
                     miLista.add(i, candidato);//Se guarda el cantidato en la posicion i
                     i+=1;//Se le suma 1 al i
                     break;
@@ -117,6 +139,7 @@ public class App {
                             byte numEleccion = scanner.nextByte();
                             boolean derecha = (numEleccion == 1);
                             candidatoActualizar.setDerecha(derecha);
+
                     
                             candidatoActualizar.setNombre(nuevoNombre);
                             candidatoActualizar.setCedula(nuevaCedula);
@@ -181,7 +204,53 @@ public class App {
                             }
                             break;
                         }
-
+                        case 6:{
+                            System.out.println("\n--MENU VOTOS--: ");
+                            System.out.println("\n");
+                            List<Integer> miListaV = new ArrayList<>();
+                            int votos;
+                            for(int z = 0; z < miLista.size();z++){
+                                Candidato candidato2 = miLista.get(z);
+                                System.out.println("Dijita los votos del candidato :" + candidato2.getNombre());
+                                votos = scanner.nextInt();
+                                miListaV.add(z, votos);
+                                System.out.println("\n");   
+                                }
+                                
+                            int valorMayor = miListaV.get(0);
+                            int posGanador = 0;
+                            for(int v = 0; v < miLista.size(); v++){
+                                int vaorIngre = miListaV.get(v);
+                                if(vaorIngre > valorMayor){
+                                    valorMayor = vaorIngre;
+                                    posGanador = v;
+                                }
+                                
+                                }
+                            System.out.println("\nEl candidato ganador es: ");
+                            Candidato candidato2 = miLista.get(posGanador);
+                            System.out.println("Nombre: " + candidato2.getNombre());
+                            System.out.println("Cedula: " + candidato2.getCedula());
+                            System.out.println("Las propuestas del candidato ganador son "+ candidato2.getPromesas() + " y "+ candidato2.getPromesas2());
+                            System.out.println("Con una cantidade de: "+ valorMayor + " votos");
+                            //Partido con mayor cantidatos inscritos
+                            PartidoPolitico partido[] = PartidoPolitico.values();
+                            int partisoMyor = lista4[0];
+                            
+                            int posG = 0;
+                            
+                            for(int j=0;j<lista4.length;j++){
+                                if(lista4[j]>partisoMyor){
+                                    partisoMyor = lista4[j];
+                                    posG = j;
+                                }
+                            }
+                            System.out.println("El partido von mayor numero de candidatos es "+partido[posG]);
+                            System.out.println("la cantidad mayor que tiene un partido es " + partisoMyor);
+                            break;
+                            }
+                        case 0: salir = true;break;
+                        default : System.out.println("Error...vuelva a intentarlo");
 
                 }
         }
