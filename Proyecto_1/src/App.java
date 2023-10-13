@@ -127,6 +127,45 @@ public class App {
                         }
                         break;
                     }
+                    case 3:{
+                        System.out.println("Lista de candidatos inscritos"); 
+                        for(int z = 0; z < miLista.size(); z++){ // Guarda los nombres de los candidatos que se inscriben 
+                           Candidato candidatoExistente = miLista.get(z);
+                           System.out.println((z + 1) + " . " + candidatoExistente.getNombre());
+                        }
+                        System.out.println("Cuantos candidatos quiere eliminar");
+                        int numeroCandidato = scanner.nextInt();
+                        
+                        if(numeroCandidato >=1 && numeroCandidato <= miLista.size()){
+                            miLista.remove(numeroCandidato-1);
+                            System.out.println("El candidato a sido eliminado");
+                        }else{
+                            System.out.println("No estas escogiendo un numero del registro");
+                        }
+                        break;
+                    }
+                    case 4:{
+                         scanner.nextLine();
+
+                        System.out.println("Que candidato quiere buscar: ");
+                        String cBuscar = scanner.nextLine();
+
+                        boolean cambiar = false;
+
+                        for (Candidato candidato : miLista){
+                            if(candidato.getNombre().equalsIgnoreCase(cBuscar)){
+                               System.out.println("Encontrado");
+                               System.out.println("Nombre: " + candidato.getNombre());
+                               System.out.println("Cedula: " + candidato.getCedula());
+
+                               cambiar = true;
+                               break;
+                            }else{
+                                System.out.println("No existe este candidato");
+                            }
+                        }
+                        break;
+                    }
 
 
                 }
