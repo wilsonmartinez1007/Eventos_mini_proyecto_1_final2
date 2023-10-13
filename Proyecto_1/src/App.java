@@ -71,6 +71,64 @@ public class App {
                     i+=1;//Se le suma 1 al i
                     break;
                     }
+
+                    case 2: {
+                        System.out.println("Lista de candidatos registrados");
+                        for (int j = 0; j < miLista.size(); j++) {                   //se muestra lista de todos los candidatos registrados
+                            Candidato candidatoExistente = miLista.get(j);
+                            System.out.println((j + 1) + " . " + candidatoExistente.getNombre());
+                        }
+                        System.out.println("¿Cual candidato desea hacerle una actualizacion? \n");
+                        int numeroCandidato = scanner.nextInt();
+                    
+                        if (numeroCandidato >= 1 && numeroCandidato <= miLista.size()) { //el condicional garantiza que el numero no sea mas grande que la lista ni sea menor al primer valor de ella 
+                            scanner.nextLine();
+                    
+                            Candidato candidatoActualizar = miLista.get(numeroCandidato - 1);
+                    
+                            System.out.println("Cambie el nombre:");  //ingresa los nuevos cambios
+                            String nuevoNombre = scanner.nextLine();
+                            System.out.println("Cambie el numero de cedula:");
+                            String nuevaCedula = scanner.nextLine();
+                    
+                            Ciudades ciudad[] = Ciudades.values();   //se muestran de nuevo las ciudades permitidas 
+                            System.out.println("ciudades del valle del cauca:");
+                            for (int k = 0; k < ciudad.length; k++) {
+                                System.out.print((k + 1) + ". " + ciudad[k] + " ");
+                                System.out.println("\n");
+                            }
+                            System.out.println("\nDigite el numero que corresponde a la nueva ciudad:"); //se actualiza la ciudad 
+                            byte numCiudad = scanner.nextByte();
+                            candidatoActualizar.setCiudades(ciudad[numCiudad - 1]);
+                    
+                            System.out.println("Cambie el partido politico:"); //se muestran de nuevo los valores de los partidos permitidos
+                            PartidoPolitico partidosP[] = PartidoPolitico.values();
+                            for (int x = 0; x < partidosP.length; x++) {
+                                System.out.print((x + 1) + ". " + partidosP[x] + " ");
+                                System.out.println("\n");
+                            }
+                            System.out.println("\nDigite el numero que corresponde al nuevo partido politico:"); //se actualiza el partido
+                            byte numPartido = scanner.nextByte();
+                            candidatoActualizar.setPartidoPolitico(partidosP[numPartido - 1]);
+                    
+                            System.out.println("Cambie la postura politica:");
+                            System.out.println("1. Derecha");
+                            System.out.println("2. Izquierda");
+                            byte numEleccion = scanner.nextByte();
+                            boolean derecha = (numEleccion == 1);
+                            candidatoActualizar.setDerecha(derecha);
+                    
+                            candidatoActualizar.setNombre(nuevoNombre);
+                            candidatoActualizar.setCedula(nuevaCedula);
+                    
+                            System.out.println("Ha actualizado los datos del candidato.");
+                        } else {
+                            System.out.println("Este candidato no esta registrado.");
+                        }
+                        break;
+                    }
+
+
                 }
         }
     }
