@@ -30,4 +30,7 @@ public class Ciudadano {
         this.ciudades = ciudades;
     }
     
+
+
+
 }
