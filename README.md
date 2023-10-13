@@ -1,1 +1,4 @@
-# Eventos_mini_proyecto_1_final2
+##Nombre - Codigo
+##Wilson Andresz Martinesz Rivera-2266319
+##Juan Gabriel Paredes- 2261183
+##Juan David Camacho- 2266292
