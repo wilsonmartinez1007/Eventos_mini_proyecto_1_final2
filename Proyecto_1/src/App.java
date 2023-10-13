@@ -167,6 +167,21 @@ public class App {
                         break;
                     }
 
+                     case 5: {
+                            System.out.println("Lista de todos los candidatos registrados: \n");
+                            for (int j = 0; j < miLista.size(); j++) { //se recorre e imprime la lista de candidatos registrados
+                                Candidato candidato = miLista.get(j);
+                                System.out.println("Candidato #" + (j + 1) + ":");    //se imprime la informacion de cada candidato con un # que aumenta con el recorrido del for 
+                                System.out.println("Nombre: " + candidato.getNombre());
+                                System.out.println("Cédula: " + candidato.getCedula());
+                                System.out.println("Ciudad: " + candidato.getCiudades());
+                                System.out.println("Partido Político: " + candidato.getPartidoPolitico());
+                                System.out.println("postura Política: " + (candidato.isDerecha() ? "Derecha" : "Izquierda")); // el ? sirve como condicional para determinar la postura politica
+                                System.out.println();
+                            }
+                            break;
+                        }
+
 
                 }
         }
